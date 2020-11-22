@@ -2,12 +2,14 @@ import React from 'react'
 import {View, Text, StyleSheet, Button} from 'react-native'
 import {globalStyles} from '../styles/global'
 
-function MyPostsScreen({navigation}) {
+function CategoriesScreen({navigation}) {
   return (
     <View style={globalStyles.container}>
-	  <Button title="MyPosts Screen"/>
+	  <Text>
+	  	Categories List
+	  </Text>
     </View>
   );
 }
 
-export default MyPostsScreen;
+export default CategoriesScreen;

@@ -6,8 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 const Tab = createMaterialBottomTabNavigator();
 
 // SCREENS
-import AccountStackScreen from '../screenstacks/AccountStackScreen'
-import MyPostsStackScreen from '../screenstacks/MyPostsStackScreen'
+import CategoriesStackScreen from '../screenstacks/CategoriesStackScreen'
 import HomeStackScreen from '../screenstacks/HomeStackScreen'
 import DetailsStackScreen from '../screenstacks/DetailsStackScreen'
 
@@ -15,19 +14,21 @@ const HomeTab = () =>{
   return (
     <Tab.Navigator
       initialRouteName="Home"
-      activeColor="white"
-      style={{ backgroundColor: 'tomato' }}
+      activeColor="#009387"
+      barStyle={{ backgroundColor: '#fff' }}
+
     >
       <Tab.Screen
         name="Home"
         component={HomeStackScreen}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: 'Keep Notes',
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="home" color={color} size={26} />
           ),
         }}
       />
+      
       <Tab.Screen
         name="Details"
         component={DetailsStackScreen}
@@ -38,21 +39,12 @@ const HomeTab = () =>{
           ),
         }}
       />
-{/*      <Tab.Screen
-        name="Account"
-        component={AccountStackScreen}
-        options={{
-          tabBarLabel: 'Account',
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="account" color={color} size={26} />
-          ),
-        }}
-      />*/}
+      
       <Tab.Screen
-        name="MyPosts"
-        component={MyPostsStackScreen}
+        name="Categories"
+        component={CategoriesStackScreen}
         options={{
-          tabBarLabel: 'Posts',
+          tabBarLabel: 'Categories',
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="view-list" color={color} size={26} />
           ),

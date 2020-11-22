@@ -6,7 +6,7 @@ export const globalStyles = StyleSheet.create({
         flex: 1
     },
     titleText: {
-        fontFamily: 'nunito-bold',
+    
         fontSize: 18,
         color: '#333'
     },
@@ -31,7 +31,7 @@ export const globalStyles = StyleSheet.create({
     about: {
         position: "absolute", 
         padding: 20, 
-        fontFamily: 'nunito-bold',
+    
         bottom: 25,
         fontSize: 16,
         color: 'black',
@@ -39,7 +39,7 @@ export const globalStyles = StyleSheet.create({
     technologies: {
         position: "absolute", 
         padding: 20, 
-        fontFamily: 'nunito-light',
+    
         bottom: 0,
         fontSize: 16,
         color: '#0000ff',

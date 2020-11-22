@@ -147,7 +147,6 @@ export default function LoignScreen({navigation}){
             Alert.alert("Invalid User!","Username or Password cannot be empty.", [{title: 'Okay'}])
             return;   
         }
-    
 
         let obj = {}
         obj["email"] = email
@@ -181,7 +180,11 @@ export default function LoignScreen({navigation}){
                 console.log("========================================================================================")
                 console.log("LOGIN RESPONSE OBJECT", obj)
                 console.log("========================================================================================")
-                signIn(obj)
+                 Alert.alert("Success","Successfull Logged In", [{title: 'Okay'}])
+                   
+                setTimeout(() => {
+                    signIn(obj)
+                },2000)
             }                    
         })
         .catch(error => {
@@ -208,7 +211,7 @@ export default function LoignScreen({navigation}){
                     />
 
                     <TextInput 
-                        placeholder = "Username"
+                        placeholder = "Email"
                         style = {styles.textInput}
                         autoCapitalize = "none"
                         onChangeText = {(val) => textInputChange(val)}
@@ -313,7 +316,7 @@ export default function LoignScreen({navigation}){
                         </LinearGradient>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress = {() => navigation.navigate("SignupScreen")}
+                        onPress = {() => navigation.navigate("SignupScreen",{name: 'shivakumara'})}
                         style={{...styles.signIn, borderColor: '#009387', borderWidth: 1, marginTop: 15}}
                     >   
                         <Text style = {{...styles.textSign, color: '#009387'}}>Sign Up</Text>

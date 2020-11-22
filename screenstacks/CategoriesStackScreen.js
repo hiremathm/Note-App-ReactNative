@@ -1,13 +1,12 @@
 import  React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons'
-import DetailsScreen from '../screens/DetailsScreen'
+import CategoriesScreen from '../screens/CategoriesScreen'
 
-const DetailsStack = createStackNavigator();
+const CategoriesStack = createStackNavigator();
 
-const DetailsStackScreen = ({route,navigation}) => (
-
-  <DetailsStack.Navigator 
+const CategoriesStackScreen = ({navigation}) => (
+  <CategoriesStack.Navigator 
     screenOptions={
       {
         headerStyle: {
@@ -20,19 +19,17 @@ const DetailsStackScreen = ({route,navigation}) => (
       }
     }
   >
-    <DetailsStack.Screen name = "Details" options = {
+    <CategoriesStack.Screen name = "Categories" component = {CategoriesScreen} options = {
       {
-        title: 'Details',
+        title: 'Categories',
         headerLeft: () => (
           <Icon.Button name = "ios-menu" size = {40} backgroundColor = "#009387" onPress = {() => navigation.openDrawer()}>
           </Icon.Button>
         )
-      }
-    } >  
-    {props => <DetailsScreen {...props} />}
 
-    </DetailsStack.Screen>
-  </DetailsStack.Navigator>
+      }
+    }/>  
+  </CategoriesStack.Navigator>
 )
 
-export default DetailsStackScreen;
+export default CategoriesStackScreen;

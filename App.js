@@ -33,7 +33,7 @@ function App() {
   }
   const loginReducer = (prevState, action) => {
     switch(action.type){
-      case 'RETRIVE_TOKEN':
+      case 'RETRIEVE_TOKEN':
         return {
           ...prevState, isLoading: false, userToken: action.token
         };
@@ -48,8 +48,11 @@ function App() {
         };
       case 'REGISTER':
         return {
-          ...prevState, isLoading: false,userName: action.id,userToken: action.token
-        };
+          ...prevState,
+          userName: action.id,
+          userToken: action.token,
+          isLoading: false,
+        }
     }
   }
 
@@ -87,9 +90,11 @@ function App() {
 
         dispatch({type: 'LOGOUT'})        
       },
-      signUp: () => {
+      signUp: (user) => {
         // setUserToken('lkjsdlfsdjlf')
         // setIsloading(false)
+        console.log("REGISTERED USER IS ", user)
+        dispatch({type: 'REGISTER', id: user.name})
       }  
     }), [])
 
@@ -106,7 +111,8 @@ function App() {
 
       console.log("TOKEN IN RENDER ", token)
 
-      dispatch({type: 'REGISTER', token: token})
+      dispatch({type: 'RETRIEVE_TOKEN', token: token})
+
     },1000)
   },[])
 
