@@ -57,27 +57,23 @@ function App() {
 
 
   const authContext = useMemo(() => ({
-      signIn: async(userName, password) => {
+      signIn: async(user) => {
         // setUserToken('lkjsdlfsdjlf')
         // setIsloading(false)
 
         let userToken;
         userToken = null;
 
-        if(userName === 'shivasorab@gmail.com' && password === 'password'){
+        // if(userName === 'username' && password === 'password'){
           try{
-            userToken = 'shiva123'
+            userToken = String(user.userToken);
             await AsyncStorage.setItem('userToken', userToken)
           }catch(e){
             console.log("LOGIN ERROR IN USE MEMO", e)
           }
-        }
+        // }
 
-        console.log("USERNAME , PASSWORD ", userName, password)
-
-        console.log("USER TOKEN ", userToken)
-
-        dispatch({type: 'LOGIN', id: userName, token: userToken})
+        dispatch({type: 'LOGIN', id: user.username, token: userToken})
       },
       signOut: async () => {
         // setUserToken(null)
