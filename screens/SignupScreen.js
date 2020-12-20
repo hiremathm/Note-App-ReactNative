@@ -191,7 +191,7 @@ export default function SignupScreen({route, navigation}){
         console.log("SIGNUP REQUEST", obj)
         console.log("========================================================================================")
 
-        fetch('https://snotemern.herokuapp.com/users', {
+        fetch('https://keepnotesec.herokuapp.com/users', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',

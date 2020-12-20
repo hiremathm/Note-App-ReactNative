@@ -155,7 +155,7 @@ export default function LoignScreen({navigation}){
         console.log("LOGIN REQUEST", obj)
         console.log("========================================================================================")
 
-        fetch('https://snotemern.herokuapp.com/users/login', {
+        fetch('https://keepnotesec.herokuapp.com/users/login', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',

@@ -3,12 +3,17 @@ import {View,Button, Text} from 'react-native'
 import {globalStyles} from '../styles/global'
 import AsyncStorage from '@react-native-community/async-storage'
 
+import { AuthContext } from '../components/context'
+
+
 export default function LogoutScreen({navigation}){
+    const { signOut } = React.useContext(AuthContext)
+
     const sendLogoutRequest = () => {
         AsyncStorage.getItem('token')
             .then(token => {
                 if(token){
-                    fetch('https://snotemern.herokuapp.com/users/logout', {
+                    fetch('https://keepnotesec.herokuapp.com/users/logout', {
                         method: 'DELETE',
                         headers: {
                             Accept: 'application/json',
@@ -19,7 +24,7 @@ export default function LogoutScreen({navigation}){
                     .then(response => response.json())                                                                                                
                     .then(response => {                                                                         
                         console.log('Logout response', response)    
-                        AsyncStorage.clear()              
+                        signOut()              
                         navigation.navigate('Login')                                  
                     })
                     .catch(error => {

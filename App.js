@@ -84,11 +84,11 @@ function App() {
          
         try{
           await AsyncStorage.removeItem('userToken')
+          dispatch({type: 'LOGOUT'})        
         }catch(e){
           console.log("LOGOUT ERROR", e)
         }
 
-        dispatch({type: 'LOGOUT'})        
       },
       signUp: (user) => {
         // setUserToken('lkjsdlfsdjlf')

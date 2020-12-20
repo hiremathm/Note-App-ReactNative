@@ -17,7 +17,7 @@ export default function HomeScreen({navigation}){
         review["category"] = '5ec4a88106d10236454be3fd'
         AsyncStorage.getItem('userToken')
         .then(value => {
-            fetch('https://snotemern.herokuapp.com/notes', {
+            fetch('https://keepnotesec.herokuapp.com/notes', {
                     method: 'POST',
                     headers: {
                         Accept: 'application/json',
@@ -35,13 +35,13 @@ export default function HomeScreen({navigation}){
                 })
             })
         setModalOpen(false)
+        // setNotes([])
     }
 
     useEffect(() => {
         AsyncStorage.getItem('userToken')
         .then(token => {
-        const url = 'http://snotemern.herokuapp.com/notes'
-        console.log("TOKEN IS", token)
+        const url = 'https://keepnotesec.herokuapp.com/notes'
         fetch(url,{headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ export default function HomeScreen({navigation}){
                 setNotes(all_notes) 
             })    
         })
-    }, [setNotes])
+    }, [notes])
 
     return (
         <View style= {globalStyles.container}>
