@@ -26,7 +26,10 @@ export default function HomeScreen({navigation}){
                     },
                     body: JSON.stringify(review)
                 })
-                .then(response => response.json())
+                .then(response => response.json()) 
+                .then(response => 
+                    console.log("POST RESPONSE",response)
+                )
                 .catch(error => {
                     console.log(error)
                 })
@@ -38,16 +41,22 @@ export default function HomeScreen({navigation}){
         AsyncStorage.getItem('userToken')
         .then(token => {
         const url = 'http://snotemern.herokuapp.com/notes'
-        fetch(url,{headers: {'x-auth': token}})
+        console.log("TOKEN IS", token)
+        fetch(url,{headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'x-auth': token
+            }})
             .then(resp => resp.json())
             .then(resp => {
                 let all_notes = resp.map(r => {
                     return {title: r.title, rating: 5, body: r.body, key:  r.title}
                 })
+                console.log("NOTES sdfsdfs",all_notes)
                 setNotes(all_notes) 
             })    
         })
-    }, [notes])
+    }, [setNotes])
 
     return (
         <View style= {globalStyles.container}>
