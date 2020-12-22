@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect, useContext} from 'react'
 import {View ,Text, Button, FlatList, TouchableOpacity, Modal, StyleSheet, Keyboard, TouchableWithoutFeedback} from "react-native";
 import {MaterialIcons} from '@expo/vector-icons'
 import AsyncStorage from '@react-native-community/async-storage'
@@ -7,10 +7,19 @@ import Form from './form'
 import {globalStyles} from '../styles/global'
 import Card from '../shared/card'
 
+// Context
+import {AuthContext} from '../components/context'
+
+
 export default function HomeScreen({navigation}){
     const [modalOpen, setModalOpen] = useState(false)
 
-    const [notes, setNotes] = useState([]);
+
+    const {state, setAllNotes} = useContext(AuthContext)
+
+    // console.log("STATE", state)
+    const notes = state.notes
+    // const [notes, setNotes] = useState(state.notes);
 
     const addNote = (review) => {
         review.key = Math.random(10000).toString();
@@ -27,8 +36,8 @@ export default function HomeScreen({navigation}){
                     body: JSON.stringify(review)
                 })
                 .then(response => response.json()) 
-                .then(response => 
-                    console.log("POST RESPONSE",response)
+                .then(response =>{} 
+                    // console.log("POST RESPONSE",response)
                 )
                 .catch(error => {
                     console.log(error)
@@ -52,11 +61,12 @@ export default function HomeScreen({navigation}){
                 let all_notes = resp.map(r => {
                     return {title: r.title, rating: 5, body: r.body, key:  r.title}
                 })
-                console.log("NOTES sdfsdfs",all_notes)
-                setNotes(all_notes) 
+                // console.log("NOTES sdfsdfs",all_notes)
+                setAllNotes(all_notes)
+                // setNotes(all_notes) 
             })    
         })
-    }, [notes])
+    }, [state, setAllNotes])
 
     return (
         <View style= {globalStyles.container}>

@@ -29,7 +29,8 @@ function App() {
   const initialLoginState = {
     isLoading: true,
     userName: null,
-    userToken: null
+    userToken: null,
+    notes: []
   }
   const loginReducer = (prevState, action) => {
     switch(action.type){
@@ -52,6 +53,12 @@ function App() {
           userName: action.id,
           userToken: action.token,
           isLoading: false,
+        };
+      case 'SET_NOTES':
+        const notes = action.notes
+        return {
+          ...prevState,
+          notes
         }
     }
   }
@@ -60,7 +67,7 @@ function App() {
 
 
   const authContext = useMemo(() => ({
-      signIn: async(user) => {
+        signIn: async(user) => {
         // setUserToken('lkjsdlfsdjlf')
         // setIsloading(false)
 
@@ -95,7 +102,11 @@ function App() {
         // setIsloading(false)
         console.log("REGISTERED USER IS ", user)
         dispatch({type: 'REGISTER', id: user.name})
-      }  
+      },
+      setAllNotes: (notes) => {
+        dispatch({type: 'SET_NOTES', notes})
+      }
+
     }), [])
 
   useEffect(() => {
@@ -109,7 +120,7 @@ function App() {
         console.log("TOKEN ERROR IN RENDER", e)
       }
 
-      console.log("TOKEN IN RENDER ", token)
+      // console.log("TOKEN IN RENDER ", token)
 
       dispatch({type: 'RETRIEVE_TOKEN', token: token})
 
@@ -117,7 +128,6 @@ function App() {
   },[])
 
   if( loginState.isLoading ) {
-    console.log("is loading is ", loginState.isLoading)
     return(
       <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
         <Text>Loading</Text>
@@ -127,7 +137,7 @@ function App() {
   }
 
   return (
-    <AuthContext.Provider value = {authContext}>
+    <AuthContext.Provider value = {{state: loginState, ...authContext}}>
       <NavigationContainer>
         <StatusBar backgroundColor="#009387" barStyle="light-content"/>
 
